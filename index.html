@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+    <head><meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Rapport d’activités</title>
+        <link rel="stylesheet" href="style.css">
+    </head><body><div class="container">
+        <header class="hero">
+            <p class="eyebrow">IDOM Technologies · Rapport professionnel</p>
+            <h1>Rapport d’activités en entreprise</h1>
+            <p>Suivi mensuel des missions, compétences, difficultés et perspectives.</p>
+        </header>
+        <nav>
+            <a href="#todos">Tâches</a>
+            <a href="#months">Fiches</a>
+            <a href="#creator">Nouvelle fiche</a>
+            <button id="printBtn" type="button">Imprimer / PDF</button>
+        </nav>
+        <section id="todos" class="panel">
+            <div class="title-row">
+                <h2>Tableau des tâches</h2>
+                <span id="todoCounter" class="badge"></span>
+            </div>
+            <form id="todoForm" class="todo-form">
+                <input id="taskInput" required maxlength="180" placeholder="Nouvelle tâche">
+                <select id="taskMonth"></select>
+                <button class="primary">Ajouter</button>
+            </form>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Terminée</th>
+                            <th>Tâche</th>
+                            <th>Mois</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="todoBody">
+
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="creator" class="panel">
+            <div class="title-row">
+                <h2>Créer une fiche mensuelle</h2>
+                <span class="badge">Modèle commun</span>
+            </div>
+            <form id="monthForm" class="month-form">
+                <label>Mois et année<input id="monthName" required placeholder="Novembre 2027"></label>
+                <label>Thème<input id="monthTag" required placeholder="Tests & migration"></label>
+                <label class="wide">Contexte<textarea id="context" required></textarea></label>
+                <label class="wide">Activités, une par ligne<textarea id="activities" required></textarea></label>
+                <label class="wide">Compétences, une par ligne<textarea id="skills"></textarea></label>
+                <label class="wide">Analyse personnelle<textarea id="analysis"></textarea></label>
+                <label class="wide">Perspectives, une par ligne<textarea id="perspectives"></textarea></label>
+                <div class="wide actions">
+                    <button class="primary">Créer la fiche</button>
+                    <button type="reset">Vider</button>
+                </div>
+            </form>
+        </section>
+        <main id="months">
+
+        </main>
+        <footer>Rapport d’activités · IDOM Technologies</footer>
+    </div><script src="script.js"></script></body></html>
