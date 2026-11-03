@@ -88,6 +88,46 @@
                 s.append(b);
                 return s
             }
+
+            function modifyCard(month) {
+                const name = prompt("Mois et année :", month.name);
+                if (name === null) return;
+
+                const tag = prompt("Thème du mois :", month.tag);
+                if (tag === null) return;
+
+                const context = prompt("Contexte du mois :", month.context);
+                if (context === null) return;
+
+                const skills = prompt(
+                    "Compétences, une par ligne :",
+                    month.skills.join("\n")
+                );
+                if (skills === null) return;
+
+                const analysis = prompt(
+                    "Analyse personnelle :",
+                    month.analysis
+                );
+                if (analysis === null) return;
+
+                const perspectives = prompt(
+                    "Perspectives, une par ligne :",
+                    month.perspectives.join("\n")
+                );
+                if (perspectives === null) return;
+
+                month.name = name.trim();
+                month.tag = tag.trim();
+                month.context = context.trim();
+                month.skills = line(skills);
+                month.analysis = analysis.trim();
+                month.perspectives = line(perspectives);
+
+                save();
+                renderMonths();
+                renderTodos();
+            }
             
             function renderMonths(){
                 monthsEl.textContent='';
@@ -97,8 +137,20 @@
                     const card=el('article','month');
                     card.id='month-'+m.id;
                     const head=el('div','month-head'),wrap=el('div');wrap.append(el('p','eyebrow','Mois '+String(mi+1).padStart(2,'0')),el('h2','',m.name));
-                    head.append(wrap,el('span','tag',m.tag));
-                    card.append(head,section('1. Contexte du mois',m.context));
+                    const editCardButton = el("button", "", "Modifier la fiche");
+                    editCardButton.type = "button";
+                    editCardButton.addEventListener("click", () => {
+                    modifyCard(m);
+                    });
+                    head.append(
+                    wrap,
+                    el("span", "tag", m.tag),
+                    editCardButton
+                    );
+                    card.append(
+                    head,
+                    section("1. Contexte du mois", m.context)
+                    );
                     const acts=el('section','section');
                     acts.append(el('h3','','2. Activités réalisées'));
                     m.activities.forEach((a,ai)=>{const box=el('article','activity');

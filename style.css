@@ -236,6 +236,10 @@ footer{
     padding:10px 0 40px
 }
 
+.month-head button {
+  white-space: nowrap;
+}
+
 @media(max-width:720px){
     .todo-form,.month-form{
         grid-template-columns:1fr
@@ -252,6 +256,10 @@ footer{
     
     nav{
         position:static
+    }
+
+    .month-head button {
+        width: 100%;
     }
 }
 
