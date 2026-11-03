@@ -64,8 +64,8 @@
                 done:false
                 }
             ]);
-            const monthsEl=document.querySelector('#months')
-            /* select=document.querySelector('#taskMonth'); */
+            const monthsEl=document.querySelector('#months'),
+            select=document.querySelector('#taskMonth');
 
             function el(tag,cls,text){
                 const n=document.createElement(tag);
@@ -88,46 +88,6 @@
                 s.append(b);
                 return s
             }
-
-            function modifyCard(month) {
-                const name = prompt("Mois et année :", month.name);
-                if (name === null) return;
-
-                const tag = prompt("Thème du mois :", month.tag);
-                if (tag === null) return;
-
-                const context = prompt("Contexte du mois :", month.context);
-                if (context === null) return;
-
-                const skills = prompt(
-                    "Compétences, une par ligne :",
-                    month.skills.join("\n")
-                );
-                if (skills === null) return;
-
-                const analysis = prompt(
-                    "Analyse personnelle :",
-                    month.analysis
-                );
-                if (analysis === null) return;
-
-                const perspectives = prompt(
-                    "Perspectives, une par ligne :",
-                    month.perspectives.join("\n")
-                );
-                if (perspectives === null) return;
-
-                month.name = name.trim();
-                month.tag = tag.trim();
-                month.context = context.trim();
-                month.skills = line(skills);
-                month.analysis = analysis.trim();
-                month.perspectives = line(perspectives);
-
-                save();
-                renderMonths();
-                renderTodos();
-            }
             
             function renderMonths(){
                 monthsEl.textContent='';
@@ -137,20 +97,8 @@
                     const card=el('article','month');
                     card.id='month-'+m.id;
                     const head=el('div','month-head'),wrap=el('div');wrap.append(el('p','eyebrow','Mois '+String(mi+1).padStart(2,'0')),el('h2','',m.name));
-                    const editCardButton = el("button", "", "Modifier la fiche");
-                    editCardButton.type = "button";
-                    editCardButton.addEventListener("click", () => {
-                    modifyCard(m);
-                    });
-                    head.append(
-                    wrap,
-                    el("span", "tag", m.tag),
-                    editCardButton
-                    );
-                    card.append(
-                    head,
-                    section("1. Contexte du mois", m.context)
-                    );
+                    head.append(wrap,el('span','tag',m.tag));
+                    card.append(head,section('1. Contexte du mois',m.context));
                     const acts=el('section','section');
                     acts.append(el('h3','','2. Activités réalisées'));
                     m.activities.forEach((a,ai)=>{const box=el('article','activity');
@@ -176,9 +124,7 @@
                                     renderMonths()};
                                     actions.append(edit,del);
                                     body.append(text,area,actions);
-                                    box.append(body);
-                                    acts.append(box)
-                                });
+                                    box.append(body);acts.append(box)});
                                     card.append(acts,
                                                 section('3. Connaissances et compétences acquises',m.skills,true),
                                                 section('4. Analyse personnelle',m.analysis),
@@ -187,8 +133,7 @@
                                                 del.type='button';del.onclick=()=>{
                                                     if(confirm(`Supprimer la fiche « ${m.name} » ?`)){
                                                         months=months.filter(x=>x.id!==m.id);
-                                                        save();
-                                                        renderMonths();
+                                                        save();renderMonths();
                                                         renderTodos()
                                                     }
                                                 };
@@ -232,7 +177,7 @@
                                                                                     const i=document.querySelector('#taskInput'),
                                                                                     v=i.value.trim();
                                                                                     if(!v)return;
-                                                                                    /* todos.push({id:Date.now(),text:v,month:select.value,done:false}); */
+                                                                                    todos.push({id:Date.now(),text:v,month:select.value,done:false});
                                                                                     i.value='';
                                                                                     save();
                                                                                     renderTodos()
