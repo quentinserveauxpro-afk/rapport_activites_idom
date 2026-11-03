@@ -64,8 +64,8 @@
                 done:false
                 }
             ]);
-            const monthsEl=document.querySelector('#months'),
-            select=document.querySelector('#taskMonth');
+            const monthsEl=document.querySelector('#months')
+            /* select=document.querySelector('#taskMonth'); */
 
             function el(tag,cls,text){
                 const n=document.createElement(tag);
@@ -176,7 +176,9 @@
                                     renderMonths()};
                                     actions.append(edit,del);
                                     body.append(text,area,actions);
-                                    box.append(body);acts.append(box)});
+                                    box.append(body);
+                                    acts.append(box)
+                                });
                                     card.append(acts,
                                                 section('3. Connaissances et compétences acquises',m.skills,true),
                                                 section('4. Analyse personnelle',m.analysis),
@@ -185,7 +187,8 @@
                                                 del.type='button';del.onclick=()=>{
                                                     if(confirm(`Supprimer la fiche « ${m.name} » ?`)){
                                                         months=months.filter(x=>x.id!==m.id);
-                                                        save();renderMonths();
+                                                        save();
+                                                        renderMonths();
                                                         renderTodos()
                                                     }
                                                 };
@@ -229,7 +232,7 @@
                                                                                     const i=document.querySelector('#taskInput'),
                                                                                     v=i.value.trim();
                                                                                     if(!v)return;
-                                                                                    todos.push({id:Date.now(),text:v,month:select.value,done:false});
+                                                                                    /* todos.push({id:Date.now(),text:v,month:select.value,done:false}); */
                                                                                     i.value='';
                                                                                     save();
                                                                                     renderTodos()
